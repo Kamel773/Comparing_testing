@@ -1,7 +1,7 @@
 
 def row_exists(conn, table, id):
     cursor = conn.cursor()
-    cursor.execute('SELECT 1 FROM {} WHERE id = %s', (id,))
+    cursor.execute('SELECT 1 FROM {} WHERE id = ? LIMIT 1'.format(table), (id,))
     row = cursor.fetchone()
     if row:
         return True
