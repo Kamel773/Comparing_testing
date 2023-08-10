@@ -1,9 +1,8 @@
+import sqlite3
 
-def row_exists(conn, table, id):
+def insert_null(db_name, table_name, column_name):
+    conn = sqlite3.connect(db_name)
     cursor = conn.cursor()
-    cursor.execute('SELECT 1 FROM {} WHERE id = ?'.format(table), (id,))
-    row = cursor.fetchone()
-    if row:
-        return True
-    else:
-        return False
+    cursor.execute("INSERT INTO {} ({}) VALUES (?)".format(table_name, column_name), (None,))
+    conn.commit()
+    conn.close()
