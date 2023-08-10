@@ -11,5 +11,4 @@ def sql_to_json(db_name, table_name):
     result = []
     for row in rows:
         result.append(dict(zip(columns, row)))
-    conn.close()
-    return json.dumps(result, ensure_ascii=False)
+    return json.dumps(result)
